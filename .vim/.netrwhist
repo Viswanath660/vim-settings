@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/gdr/Projects/workspace/java/Sample/src/test'
+let g:netrw_dirhist_2='/Users/gdr'
+let g:netrw_dirhist_3='/Users/gdr/.rvm'
+let g:netrw_dirhist_4='/Users/gdr/.rvm/man'
+let g:netrw_dirhist_5='/Users/gdr'
