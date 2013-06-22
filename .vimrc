@@ -11,15 +11,11 @@ filetype plugin indent on
 
 set ruler
 
-
-
-
 let g:miniBufExplMapWindowNavVim = 1 
 let g:miniBufExplMapWindowNavArrows = 1 
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
 colorscheme desert
-syntax on
 
 filetype off
 filetype plugin indent off
@@ -50,9 +46,9 @@ set smartcase     " ignore case if search pattern is all lowercase,case-sensitiv
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
-set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar
+set history=4000         " remember more commands and search history
+set undolevels=4000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.a,*.jpeg,*.gif,*.png
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
@@ -81,7 +77,7 @@ let g:Powerline_symbols = 'fancy'
 set term=xterm-256color
 
 let g:CommandTMaxFiles=1000
-let g:CommandTMaxHeight=20
+let g:CommandTMaxHeight=25
 let g:CommandTMinHeight=4
 
 
@@ -89,7 +85,10 @@ let g:CommandTMinHeight=4
 "Remap Command Mode
 nnoremap ; :
 let mapleader ="," "Map <leader> key
-map <leader>n :NERDTreeToggle<CR> "Map NERDTree toggle to <leader>
+"Map NERDTree toggle to <leader>n
+map <leader>n :NERDTreeToggle<CR> 
+"Map Go Fmt to <leader>f
+map <leader>f :Fmt<CR> 
 
 " key mapping for google search
 function! Google()
@@ -99,4 +98,30 @@ function! Google()
    return searchterm
 endfunction
 map <leader>g <ESC>:! /usr/bin/open -a "/Applications/Google Chrome.app" 'https://google.com/search?q=<C-R>=Google()<CR>'<CR><CR>
+"
+" If you prefer the Omni-Completion tip window to close when a selection is
+" made, these lines close it on movement in insert mode or when leaving
+" insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+nnoremap <F3> :nohl<CR>
+nnoremap <F4> :NERDTreeFind<CR>
+map <F5> :silent execute " grep -srnw --binary-files=without-match --exclude-dir=.git . -e " . expand("<cword>") . " " <bar> cwindow<CR>
+nnoremap <silent> <F10> :bn<CR>
+nnoremap <silent> <S-F10> :bp<CR>
+" inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+" \ "\<lt>C-n>" :
+" \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+" \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+" \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+" set completeopt=longest,menuone
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+"   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" 
+" inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+"   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" imap <C-@> <C-Space>
+autocmd FileType go compiler golang
+let g:golang_goroot=$GOROOT
 
