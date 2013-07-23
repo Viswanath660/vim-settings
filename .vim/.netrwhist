@@ -1,8 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/gdr/Projects/workspace/java/Sample/src/test'
-let g:netrw_dirhist_2='/Users/gdr'
-let g:netrw_dirhist_3='/Users/gdr/.rvm'
-let g:netrw_dirhist_4='/Users/gdr/.rvm/man'
-let g:netrw_dirhist_5='/Users/gdr'
-let g:netrw_dirhist_6='/Users/gdr/opt/gopath/src/github.com/nu7hatch/gouuid'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/gdr/.emacs.d/elpa/auto-complete-20130503.2013'
+let g:netrw_dirhist_2='/Users/gdr/.emacs.d/elpa/go-autocomplete-20130617.2214'
+let g:netrw_dirhist_3='/Users/gdr'

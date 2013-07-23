@@ -15,7 +15,7 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1 
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
-colorscheme desert
+colorscheme wombat256mod
 
 filetype off
 filetype plugin indent off
@@ -31,6 +31,7 @@ let g:EclimLocateFileScope="workspace"
 " autocmd VimEnter * NERDTree
 " autocmd VimEnter * wincmd p
 set hidden
+set encoding=utf-8 
 set nowrap        " don't wrap lines
 set laststatus=2
 set tabstop=4     " a tab is four spaces
@@ -54,8 +55,8 @@ set visualbell           " don't beep
 set noerrorbells         " don't beep
 set nobackup
 set noswapfile
-
-
+set cursorline
+set noshowmode
 nmap <silent> ,/ :nohlsearch<CR>
 cmap w!! w !sudo tee % >/dev/null
 
@@ -104,9 +105,20 @@ map <leader>g <ESC>:! /usr/bin/open -a "/Applications/Google Chrome.app" 'https:
 " insert mode
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+
+"Function key bindings
+"Compiler navigation bindings
+:map	<F2>	:cnext<CR> 
+:map	<S-F2>	:cprev<CR>
 nnoremap <F3> :nohl<CR>
 nnoremap <F4> :NERDTreeFind<CR>
 map <F5> :silent execute " grep -srnw --binary-files=without-match --exclude-dir=.git . -e " . expand("<cword>") . " " <bar> cwindow<CR>
+
+nnoremap <silent><F9> :MaximizerToggle<CR> 
+vnoremap <silent><F9> :MaximizerToggle<CR>gv 
+inoremap <silent><F9> <C-o>:MaximizerToggle<CR> 
+
 nnoremap <silent> <F10> :bn<CR>
 nnoremap <silent> <S-F10> :bp<CR>
 " inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
@@ -124,4 +136,5 @@ nnoremap <silent> <S-F10> :bp<CR>
 " imap <C-@> <C-Space>
 autocmd FileType go compiler golang
 let g:golang_goroot=$GOROOT
+"Maximizer key bindings
 
